@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 - Hooks</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="app"> 
+            {{ title }}
+        </div>
+    </div>
+
+    <script>
+        const App = {
+            data () {
+                return {
+                    title: 'Hello world'
+                };
+            },
+            created () {
+                this.test();
+                // request to server
+            },
+            mounted () {
+                this.test();
+            },
+            methods: {
+                test () {
+                    console.log(123);
+                },
+            },
+        };
+
+        Vue.createApp(App).mount("#app");
+    </script>
+    
+</body>
+</html>

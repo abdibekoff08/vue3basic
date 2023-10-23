@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 - Computed</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="app">
+            {{message}}
+            <div class="app__header">
+                {{ priority.title }} - {{ priority.value }}
+            </div>
+            <br>
+            <div class="app__body">
+                <button @click="up">{{ buttons.next.title }}</button>
+                <br>
+                <button v-if="priority.value > 0" @click="down">{{ buttons.prev.title }}</button>
+            </div>
+        </div>
+    </div>
+
+    <script> 
+        const App = {
+            data () {
+                return {
+                    priority: {
+                        title: "Priority",
+                        value: 0
+                    },
+                    buttons: {
+                        prev: {
+                            title: "Down",
+                        },
+                        next: {
+                            title: "Up",
+                        }, 
+                    },
+                };
+            },
+            methods: {
+                down() {
+                    if (this.priority.value >= 1) {
+                        this.priority.value -= 1; 
+                    };
+                },
+                up() {
+                    if (this.priority.value < 3) {
+                        this.priority.value += 1; 
+                    };
+                },
+            },
+            computed: {
+                message () {
+                    const messages = {
+                        welcome: "Make some Vote",
+                        save: "Saved",
+                    };
+                    return this.priority.value > 0 ? messages.save : messages.welcome;
+                },
+            },
+        };
+
+        Vue.createApp(App).mount("#app");
+    </script>
+    
+</body>
+</html>

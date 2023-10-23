@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 Init, work with data</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <h1>Hello Vue!</h1>
+
+    <div class="wrapper">
+        <div id="app">
+            <!--vue start-->
+            {{ title }}
+            <!--vue end-->
+        </div>
+    </div>
+
+
+    <script>
+        const App = {
+            data () {
+                return {
+                    title: 'Vue init, work with data',
+                };
+            },
+            /*data: () => ({
+                title: 'Arrow short method',
+            }),*/ // короткий способ, но не рекомендуется
+        };
+
+        Vue.createApp(App).mount("#app");
+    </script>
+    
+</body>
+</html>

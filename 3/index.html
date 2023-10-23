@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 - Methods</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="app">
+            <div class="app__header">
+                {{ priority.title }} - {{ priority.value }}
+            </div>
+            <br>
+            <div class="app__body">
+                <button @click="down">{{ buttons.prev.title }}</button>
+                <button @click="up">{{ buttons.next.title }}</button>
+            </div>
+        </div>
+    </div>
+
+    <script> 
+        const App = {
+            data () {
+                return {
+                    priority: {
+                        title: "Priority",
+                        value: 0
+                    },
+                    buttons: {
+                        prev: {
+                            title: "Down",
+                        },
+                        next: {
+                            title: "Up",
+                        }, 
+                    },
+                };
+            },
+            methods: {
+                down() {
+                    this.priority.value -= 1;
+                },
+                up() {
+                    this.priority.value += 1;
+                },
+            },
+        };
+
+        Vue.createApp(App).mount("#app");
+    </script>
+    
+</body>
+</html>

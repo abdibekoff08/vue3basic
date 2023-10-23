@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 - v-for</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="app"> {{ names }}
+            <ul>
+                <li v-for="name in names" key="name">{{ name }}</li>
+            </ul>
+            <button @click="addNewItem">Submit</button>
+            <hr>
+            <hr>
+            {{ people }}
+            <ul>
+                <li v-for="person in people" key="person.id">
+                    <h3>{{ person.id }}</h3>
+                    <p>{{ person.name }} - {{ person.age }}</p>
+                    <p>Gender: {{ person.male ? 'male' : 'female' }}</p>
+                </li>
+            </ul>
+            <button @click="addNewPerson">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        const App = {
+            data () {
+                return {
+                    names: ['Tamerlan', 'Alisher', 'Muhammed', 'Timur'],
+                    people: [
+                        {
+                            id: 1,
+                            name: 'Tamerlan',
+                            age: 30,
+                            male: true,
+                        },
+                        {
+                            id: 2,
+                            name: 'Alisher',
+                            age: 28,
+                            male: true,
+                        },
+                        {
+                            id: 3,
+                            name: 'Muhammed',
+                            age: 27,
+                            male: true,
+                        },
+                        {
+                            id: 4,
+                            name: 'Adila',
+                            age: 29,
+                            male: false,
+                        },
+                    ]
+                };
+            },
+            methods: {
+                addNewItem () {
+                    const randomName = Math.random().toString(36).substring(7);
+                    this.names.push(randomName);
+                },
+                addNewPerson () {
+                    this.people.push({
+                        id: this.people.length + 1,
+                        name: Math.random().toString(36).substring(7),
+                        age: 30,
+                        male: true,
+                    });
+                }
+            },
+        };
+
+        Vue.createApp(App).mount("#app");
+    </script>
+    
+</body>
+</html>
